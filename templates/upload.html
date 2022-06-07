@@ -1,0 +1,19 @@
+<!doctypehtml>
+<html>
+  <head>
+  	<meta charset="utf8"/>
+  </head>
+  <body>
+  	<h1>ファイルをアップロードします</h1>
+	  ダウンロードのポップアップ画面が表示されるまで、気長〜にお待ち下さい。<br>
+	  送信ボタンを複数回クリックするとエラーになります。ブラウザタブで処理中かどうかを確認し、気長にお待ち下さい。<br>
+	  <br>
+  	<form method="POST" action="/upload" enctype="multipart/form-data">
+  	  <input placeholder="データ" name="the_file" type="file"/>
+  	  <input value="送信" type="submit"/>
+  	</form>
+	<br>
+	<a href="/">もとに戻る</a><br>
+  </body>
+</html>
+
