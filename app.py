@@ -1,9 +1,9 @@
-#
+# -----------------------------------------------------------------
 # File: app.py
-# Function: flask gui for apa-gui.py.
-# Arg: no
-# Version: 2.6.1  (Sync ver.rel w/ excel-ver, mod is for myself.)
-#
+# Version: 1.0
+# AsOf: 2022.6.8
+# Function: flask gui for apa_auto.py
+# -----------------------------------------------------------------
 from flask import Flask, render_template, redirect, session, request, url_for, Response, make_response
 from markupsafe import escape
 from werkzeug.utils import secure_filename
@@ -40,14 +40,14 @@ def upload_and_process():
     # Store upload file to the directory.
     with lock_for_processing, tempfile.TemporaryDirectory(prefix='tmp-', dir='.') as tmp_dir, tempfile.TemporaryDirectory(prefix='out-', dir='.') as out_dir:
         target_filepath = tmp_dir + '/' + secure_filename(save_fn)
-        # print('Modern-Skeleton : uploaded filepath = {}'.format(target_filepath))
+        # print('--- uploaded filepath = {}'.format(target_filepath))
         f.save(target_filepath)
 
         try:
             main_plot(target_filepath, out_dir)
             response = make_response()
             fn_zip = out_dir + '/' + ZIP_FNAME + '.zip'
-            # print('Modern-Skeleton : app.py/waiting(): fn_zip = {}'.format(fn_zip))
+            # print('--- app.py/waiting(): fn_zip = {}'.format(fn_zip))
             response.data  = open(fn_zip, "rb").read()
 
             response.headers['Content-Type'] = 'application/octet-stream'
@@ -55,7 +55,7 @@ def upload_and_process():
             return response
 
         except:
-            print('modern-skeleton : Exception/main_plot()')
+            print('Modern-Skeleton : Exception/main_plot()')
             print(traceback.format_exc())
             return render_template('error.html')
 

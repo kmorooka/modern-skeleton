@@ -1,62 +1,59 @@
-"""
-#!/Users/morookak/opt/anaconda3/bin/python
-# coding:utf-8
-"""
-"""
-#!/usr/bin/python 
-File: apa_auto.py
-Fuction: Skeleton sample code for Container, SaaS.
-Version: v1.0
-"""
+# --------------------------------------------------------
+# File: apa_auto.py
+# Version: v1.0
+# AsOf : 2022.6.8
+# Fuction:
+#     Skeleton sample code for learning. Upload file, do anything the uploaded file, zip the output directory, file download.
+# --------------------------------------------------------
 import sys
 import os, time
 import shutil
-# from shutil import make_archive
 import re
-# from matplotlib.colors import Normalize
-# import pandas as pd
-# import matplotlib as mpl
-mpl.use("Agg")  # To avoid Assertion ~~ error in flask & matplotlib.
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-from apa_config import *  # Read Excel column name from apa-config.py file.
 import threading
 
+ZIP_FNAME = 'modern-skeleton' # zip for all plot png files.
 
 # 並列処理を可能にするため、出力先ファイルパスをスレッド毎に保存する。
 output = threading.local()
 
 # ----------------------------------------------------
 # zip_files() 
-#    arg: directory path to zip for plot files.
+#    arg: directory path to zip for files.
 # ----------------------------------------------------
 def zip_files(dirname):
-
-    print('zip_files(): dirname= {}'.format(dirname))
+    print('--- zip_files(): dirname= {}'.format(dirname))
     shutil.make_archive(ZIP_FNAME, 'zip', root_dir=dirname)
     shutil.move(ZIP_FNAME + '.zip', dirname)
     return(0)
 
 # ----------------------------------------------------
 # proc_file() 
+#   fn: 相対パス名
+#   out: 出力ディレクトリパス名
+#   fnからファイル名部分だけ抜き出し、outディレクトリ名とつないでコピー
+#   なにか処理したい場合、ここにコードを書く
 # ----------------------------------------------------
-def proc_file(fn):
-    
-    print('proc_file() : file name = {}'.format(fn))
+def proc_file(fn, out):
+    fname = os.path.basename(fn)  
+    fout = out + '/' + fname
+    print('--- proc_file(): fout = {}'.format(fout)) 
+    shutil.copyfile(fn, fout)  # do nothing, copy file only.
     return(0)
+
 # ----------------------------------------------------
 # main_plot() 
-#    arg: Uploaded & stored Excel full-path file name.
+#   fn: Uploaded full-path file name w/ tmp current directory.
+#   out: Temporary directory name for output.
 # ----------------------------------------------------
 def main_plot(fn, out):
-    print('modern-skeleton : Starting ...') 
-    print('modern-skeleton: Excel file = {}'.format(fn)) 
+    print('--- main_plot(): Starting ...') 
+    print('--- main_plot(): fn = {}'.format(fn)) 
+    print('--- main_plot(): out = {}'.format(out)) 
 
-    output.path = out
-    proc_file(fn)    # process input file.
+    proc_file(fn, out)    # process input file.
+    zip_files(out)   # zip directory.
 
-    zip_files(out)
-    print('modern-skeleton : Program End.')
+    print('--- main_plot(): Program End.')
 
     return(0)
 # ----------------------------------------------------
