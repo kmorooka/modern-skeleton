@@ -1,6 +1,6 @@
 FROM amazonlinux:2.0.20220121.0
 
-WORKDIR /apa-gui
+WORKDIR /modern-skeleton
 
 COPY *.py .
 COPY templates/ ./templates/
