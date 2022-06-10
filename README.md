@@ -30,12 +30,8 @@
 
 1. pythonバージョン3 の確認  
   個別にPython v3を導入、またはAnacondaのようなAll-Inパッケージを導入してPython v3が利用できるようにしておきます。
-2. 日本語フォントの事前導入（本来不要ですが、参考までに残しています）
-  matplotlibで日本語表示をさせるために日本語フォントを導入設定しておく必要がありました。フォント「IPAexGothic」を使用しているため、予めこれを導入しておきます。Macの場合はフォントをダウンロードし、アプリであるFont Book を使ってフォントファイルを読込んで利用可能にしてください。
-  フォントを変更したい場合、apa-config.py のパラメータ JP_FONT でフォント名を指定します。
-  フォントのダウンロード元は、以下のサイトです。この中にMac向けのインストール手順も記載されています。
-  https://moji.or.jp/ipafont/ipafontdownload/
-3. pythonライブラリーのインストール  
+
+2. pythonライブラリーのインストール  
   requirements.txt では、導入するライブラリーをリストしています。
 ```sh
 $ pip install --upgrade pip
