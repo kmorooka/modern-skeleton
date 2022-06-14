@@ -41,7 +41,7 @@ def proc_file(fn, out):
     return(0)
 
 # ----------------------------------------------------
-# main_plot() 
+# main() 
 #   fn: Uploaded full-path file name w/ tmp current directory.
 #   out: Temporary directory name for output.
 # ----------------------------------------------------

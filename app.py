@@ -2,12 +2,12 @@
 # File: app.py
 # Version: 1.0
 # AsOf: 2022.6.8
-# Function: flask gui for apa_auto.py
+# Function: flask gui for skeleton.py
 # -----------------------------------------------------------------
 from flask import Flask, render_template, redirect, session, request, url_for, Response, make_response
 from markupsafe import escape
 from werkzeug.utils import secure_filename
-from apa_auto import *  # Read apa_auto.py
+from skeleton import *  # Read skeleton.py
 import traceback
 import tempfile
 import threading
@@ -44,18 +44,18 @@ def upload_and_process():
         f.save(target_filepath)
 
         try:
-            main_plot(target_filepath, out_dir)
+            main(target_filepath, out_dir)
             response = make_response()
             fn_zip = out_dir + '/' + ZIP_FNAME + '.zip'
             # print('--- app.py/waiting(): fn_zip = {}'.format(fn_zip))
             response.data  = open(fn_zip, "rb").read()
 
             response.headers['Content-Type'] = 'application/octet-stream'
-            response.headers['Content-Disposition'] = 'attachment; filename=apa-output.zip'
+            response.headers['Content-Disposition'] = 'attachment; filename=skeleton.zip'
             return response
 
         except:
-            print('Modern-Skeleton : Exception/main_plot()')
+            print('Modern-Skeleton : Exception/main()')
             print(traceback.format_exc())
             return render_template('error.html')
 
