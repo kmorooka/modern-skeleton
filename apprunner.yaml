@@ -4,7 +4,7 @@ build:
   commands:
     build:
       - yum update -y
-      - yum install -y unzip curl fontconfig
+      - yum install -y curl
       - pip install -r requirements.txt
       - rm -rf ~/.cache
 run:

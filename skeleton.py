@@ -1,5 +1,5 @@
 # --------------------------------------------------------
-# File: apa_auto.py
+# File: skeleton.py
 # Version: v1.0
 # AsOf : 2022.6.8
 # Fuction:
@@ -21,7 +21,7 @@ output = threading.local()
 #    arg: directory path to zip for files.
 # ----------------------------------------------------
 def zip_files(dirname):
-    print('--- zip_files(): dirname= {}'.format(dirname))
+    print('--- zip_files: dirname= {}'.format(dirname))
     shutil.make_archive(ZIP_FNAME, 'zip', root_dir=dirname)
     shutil.move(ZIP_FNAME + '.zip', dirname)
     return(0)
@@ -36,7 +36,7 @@ def zip_files(dirname):
 def proc_file(fn, out):
     fname = os.path.basename(fn)  
     fout = out + '/' + fname
-    print('--- proc_file(): fout = {}'.format(fout)) 
+    print('--- proc_file: fout = {}'.format(fout)) 
     shutil.copyfile(fn, fout)  # do nothing, copy file only.
     return(0)
 
@@ -45,15 +45,15 @@ def proc_file(fn, out):
 #   fn: Uploaded full-path file name w/ tmp current directory.
 #   out: Temporary directory name for output.
 # ----------------------------------------------------
-def main_plot(fn, out):
-    print('--- main_plot(): Starting ...') 
-    print('--- main_plot(): fn = {}'.format(fn)) 
-    print('--- main_plot(): out = {}'.format(out)) 
+def main(fn, out):
+    print('--- main: Starting ...') 
+    print('--- main: fn = {}'.format(fn)) 
+    print('--- main: out = {}'.format(out)) 
 
     proc_file(fn, out)    # process input file.
     zip_files(out)   # zip directory.
 
-    print('--- main_plot(): Program End.')
+    print('--- main: Program End.')
 
     return(0)
 # ----------------------------------------------------
