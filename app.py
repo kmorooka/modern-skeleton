@@ -7,7 +7,7 @@
 from flask import Flask, render_template, redirect, session, request, url_for, Response, make_response
 from markupsafe import escape
 from werkzeug.utils import secure_filename
-from skeleton import *  # Read skeleton.py
+from skeleton import *    # Read skeleton.py
 import traceback
 import tempfile
 import threading

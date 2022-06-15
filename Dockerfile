@@ -1,7 +1,7 @@
 FROM python:3.8.12-slim-bullseye
 
 RUN apt update  && \
-  apt install -y git && \
+  apt install -y git curl && \
   git clone https://github.com/kmorooka/modern-skeleton.git && \
   pip install --upgrade pip && \
   pip install -r /modern-skeleton/requirements.txt && \
