@@ -1,4 +1,7 @@
-FROM python:3.8.12-slim-bullseye
+# Up to latest container base images due to 3.8.12 security issues.
+# c.f. iContainer base images - https://hub.docker.com/_/python
+# FROM python:3.8.12-slim-bullseye
+FROM python:3.10.5-slim-bullseye
 
 RUN apt update  && \
   apt install -y git curl && \
