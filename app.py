@@ -28,7 +28,8 @@ def upload_and_process():
         #GETでアクセスされた時、uploadsを表示
         return render_template('upload.html')
 
-    #GETでなければPOSTとし、ファイルを受け取って処理する
+    # GETでなければPOSTとし、ファイルを受け取って処理する
+    # secure_filename()の仕様としてasciiしか扱わないため、ファイル名が漢字の場合は抜け落ちます。
     f = request.files["the_file"]
     save_fn = secure_filename(f.filename)
     # print('--- uploaded save_fn = {}'.format(save_fn))
